@@ -22,9 +22,6 @@ RUN wget -O tinycore.iso \
 EXPOSE 8080
 
 CMD bash -c "\
-Xvfb :1 -screen 0 1024x768x16 & \
-export DISPLAY=:1 && \
-x11vnc -display :1 -nopw -forever -shared -rfbport 5900 & \
 websockify --web=/usr/share/novnc 8080 localhost:5900 & \
 sleep 2 && \
 qemu-system-i386 \
