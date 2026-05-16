@@ -7,8 +7,6 @@ RUN apt update && apt install -y \
     qemu-system-x86 \
     novnc \
     websockify \
-    x11vnc \
-    xvfb \
     wget \
     net-tools \
     tzdata \
@@ -16,7 +14,7 @@ RUN apt update && apt install -y \
 
 WORKDIR /vm
 
-# SliTaz ISO (stable mirror)
+# SliTaz ISO
 RUN wget -O slitaz.iso \
     http://mirror.slitaz.org/iso/rolling/slitaz-rolling.iso
 
@@ -30,6 +28,7 @@ qemu-system-i386 \
   -cdrom /vm/slitaz.iso \
   -boot d \
   -vnc :0 \
-  -cpu pentium \
+  -cpu pentium2 \
   -net nic -net user \
+  -rtc base=utc \
   -display none"
